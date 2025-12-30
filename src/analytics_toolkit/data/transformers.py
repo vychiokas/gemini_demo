@@ -1,12 +1,4 @@
-"""
-SCENARIO 3: Code needing documentation.
-
-This module contains complex but poorly documented code.
-The agent should generate comprehensive documentation.
-
-Ask the AI agent: "Generate comprehensive documentation for this module
-including docstrings, type hints improvements, and a module-level overview"
-"""
+"""Data transformation pipeline utilities."""
 
 from __future__ import annotations
 

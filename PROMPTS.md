@@ -89,40 +89,36 @@ Include all public classes, methods, and their signatures.
 
 ---
 
-## Scenario 4: Parallel Development
+## Scenario 4: Large Task Decomposition
 
-### Full Parallel (if sub-agents available)
+### Implement All Modules
 ```
-Using sub-agents, implement these four modules in parallel:
+Implement all four API modules in src/analytics_toolkit/api/:
 
-1. src/analytics_toolkit/api/endpoints.py
-2. src/analytics_toolkit/api/middleware.py
-3. src/analytics_toolkit/api/validators.py
-4. src/analytics_toolkit/api/serializers.py
+1. validators.py - Request validation framework with Validator base class
+2. serializers.py - Model serialization with MetricSerializer, UserSerializer
+3. middleware.py - Logging, Auth, RateLimit, CORS middleware
+4. endpoints.py - HealthCheck, Metrics, Query endpoints and Router
 
-Each implementation should:
-- Follow the interface in the stub file
-- Include complete type hints
-- Include Google-style docstrings
-- Handle edge cases
+Each stub file contains the interface and requirements in docstrings.
+Implement them all, following Python best practices with complete type hints
+and Google-style docstrings.
 ```
 
-### Sequential Alternative
+### Verify Integration
 ```
-Implement the API modules in this order:
-1. validators.py
-2. serializers.py
-3. middleware.py
-4. endpoints.py
-
-After each, summarize what was implemented before continuing.
+Verify all four API modules work together:
+1. Import all modules
+2. Create a test that sends a request through middleware to an endpoint
+3. Fix any integration issues
 ```
 
-### Single Module
+### Step-by-Step Alternative
 ```
-Implement src/analytics_toolkit/api/validators.py following the interface
-defined in the stub. Include complete type hints and docstrings.
+Implement src/analytics_toolkit/api/validators.py following the stub interface.
+Include complete type hints and docstrings.
 ```
+(Then repeat for serializers.py, middleware.py, endpoints.py)
 
 ---
 

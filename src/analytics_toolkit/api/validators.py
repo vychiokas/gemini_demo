@@ -1,18 +1,8 @@
-"""
-SCENARIO 4: Parallel development - Validators stub.
-
-This module needs implementation. Develop in parallel with other API modules.
-
-Requirements:
-- Validate request data against schemas
-- Return detailed error messages
-- Support common validation rules
-"""
+"""Request validation utilities."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime
 from typing import Any
 
 
@@ -34,72 +24,66 @@ class ValidationResult:
 
     @classmethod
     def success(cls) -> "ValidationResult":
+        """Create a successful validation result."""
         return cls(is_valid=True)
 
     @classmethod
     def failure(cls, errors: list[ValidationError]) -> "ValidationResult":
+        """Create a failed validation result."""
         return cls(is_valid=False, errors=errors)
 
-
-# === TODO: Implement the following validators ===
 
 class Validator:
     """
     Base validator class.
 
-    Requirements:
-    - Chain validation rules
-    - Collect all errors (don't stop at first)
-    - Support custom error messages
+    Chain validation rules and collect all errors.
+    Support custom error messages.
     """
 
     def __init__(self) -> None:
-        # TODO: Implement
         pass
 
     def required(self, field: str) -> "Validator":
         """Field must be present and not None."""
-        # TODO: Implement
         raise NotImplementedError
 
-    def string(self, field: str, min_length: int = 0, max_length: int | None = None) -> "Validator":
+    def string(
+        self, field: str, min_length: int = 0, max_length: int | None = None
+    ) -> "Validator":
         """Field must be a string with optional length constraints."""
-        # TODO: Implement
         raise NotImplementedError
 
-    def integer(self, field: str, min_val: int | None = None, max_val: int | None = None) -> "Validator":
+    def integer(
+        self, field: str, min_val: int | None = None, max_val: int | None = None
+    ) -> "Validator":
         """Field must be an integer with optional range constraints."""
-        # TODO: Implement
         raise NotImplementedError
 
-    def number(self, field: str, min_val: float | None = None, max_val: float | None = None) -> "Validator":
+    def number(
+        self, field: str, min_val: float | None = None, max_val: float | None = None
+    ) -> "Validator":
         """Field must be a number with optional range constraints."""
-        # TODO: Implement
         raise NotImplementedError
 
     def email(self, field: str) -> "Validator":
         """Field must be a valid email address."""
-        # TODO: Implement
         raise NotImplementedError
 
     def datetime_iso(self, field: str) -> "Validator":
         """Field must be a valid ISO 8601 datetime string."""
-        # TODO: Implement
         raise NotImplementedError
 
     def one_of(self, field: str, choices: list[Any]) -> "Validator":
         """Field must be one of the allowed values."""
-        # TODO: Implement
         raise NotImplementedError
 
     def list_of(self, field: str, item_validator: "Validator") -> "Validator":
         """Field must be a list where each item passes validation."""
-        # TODO: Implement
         raise NotImplementedError
 
     def validate(self, data: dict[str, Any]) -> ValidationResult:
         """Run all validation rules against data."""
-        # TODO: Implement
         raise NotImplementedError
 
 
@@ -118,7 +102,6 @@ class MetricsValidator(Validator):
     """
 
     def __init__(self) -> None:
-        # TODO: Implement with predefined rules
         pass
 
 
@@ -138,11 +121,9 @@ class QueryParamsValidator(Validator):
     """
 
     def __init__(self) -> None:
-        # TODO: Implement with predefined rules
         pass
 
 
 def validate_request_body(data: dict[str, Any], validator: Validator) -> ValidationResult:
     """Convenience function to validate request body."""
-    # TODO: Implement
     raise NotImplementedError

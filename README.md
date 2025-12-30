@@ -24,10 +24,10 @@ gemini_demo/
 │   ├── models/
 │   │   └── statistics.py      # Scenario 2: Iterative fixes
 │   ├── api/
-│   │   ├── endpoints.py       # Scenario 4: Parallel dev
-│   │   ├── middleware.py      # Scenario 4: Parallel dev
-│   │   ├── validators.py      # Scenario 4: Parallel dev
-│   │   └── serializers.py     # Scenario 4: Parallel dev
+│   │   ├── endpoints.py       # Scenario 4: Large task
+│   │   ├── middleware.py      # Scenario 4: Large task
+│   │   ├── validators.py      # Scenario 4: Large task
+│   │   └── serializers.py     # Scenario 4: Large task
 │   └── utils/
 │       └── domain_specific.py # Scenario 5: Agent limitations
 ├── tests/
@@ -168,15 +168,15 @@ explaining the transformation pipeline, available transforms, and usage examples
 
 ---
 
-### Scenario 4: Parallel Development with Sub-Agents
+### Scenario 4: Large Task Decomposition
 
-**Purpose:** Demonstrate using sub-agents to develop multiple modules simultaneously.
+**Purpose:** Demonstrate how agents break down and tackle larger, multi-file tasks.
 
 **Files to implement:**
-- `src/analytics_toolkit/api/endpoints.py`
-- `src/analytics_toolkit/api/middleware.py`
 - `src/analytics_toolkit/api/validators.py`
 - `src/analytics_toolkit/api/serializers.py`
+- `src/analytics_toolkit/api/middleware.py`
+- `src/analytics_toolkit/api/endpoints.py`
 
 **Demo Steps:**
 
@@ -184,38 +184,29 @@ explaining the transformation pipeline, available transforms, and usage examples
 gemini
 ```
 
-**Note:** Gemini CLI's sub-agent feature allows spawning multiple agents to work in
-parallel. The exact syntax may vary - check Gemini CLI documentation for current usage.
-
 **Prompt to use:**
 ```
-I need to implement four API modules in parallel. Each module has stub classes
-with requirements in the docstrings:
+Implement all four API modules in src/analytics_toolkit/api/:
 
-1. endpoints.py - HTTP endpoint handlers and router
-2. middleware.py - Request/response middleware (logging, auth, rate limiting, CORS)
-3. validators.py - Request validation framework
-4. serializers.py - Model serialization/deserialization
+1. validators.py - Request validation framework with Validator base class
+2. serializers.py - Model serialization with MetricSerializer, UserSerializer
+3. middleware.py - Logging, Auth, RateLimit, CORS middleware
+4. endpoints.py - HealthCheck, Metrics, Query endpoints and Router
 
-These modules are independent and can be developed in parallel. Use sub-agents
-to implement all four simultaneously. Each implementation should:
-- Follow the interfaces defined in the stub files
-- Include complete type hints
-- Include docstrings
-- Handle edge cases properly
+Each stub file contains the interface and requirements in docstrings.
+Implement them all, following Python best practices with complete type hints
+and Google-style docstrings.
 ```
 
 **Expected behavior:**
-1. Agent spawns sub-agents for parallel work
-2. Each sub-agent implements one module
-3. Results are collected and integrated
-4. Agent verifies implementations work together
+1. Agent reads each stub file
+2. Implements all four modules in sequence
+3. Maintains consistency across modules
+4. Considers how they integrate together
 
-**If sub-agents aren't available, alternative prompt:**
+**Follow-up prompt:**
 ```
-Implement the endpoints.py module first, then middleware.py, then validators.py,
-then serializers.py. After each, briefly verify it follows the interface before
-moving to the next.
+Verify all four modules work together by creating a simple integration test.
 ```
 
 ---
