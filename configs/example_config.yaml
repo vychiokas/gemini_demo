@@ -1,0 +1,41 @@
+# Example configuration file for analytics toolkit
+# Used by various demo scenarios
+
+application:
+  name: "Analytics Toolkit Demo"
+  version: "0.1.0"
+  environment: "development"
+
+database:
+  type: "sqlite"
+  path: ":memory:"  # Use in-memory for demo
+
+api:
+  host: "localhost"
+  port: 8080
+  rate_limit:
+    requests_per_minute: 60
+    burst_size: 10
+
+logging:
+  level: "INFO"
+  format: "json"
+  output: "stdout"
+
+metrics:
+  enabled: true
+  retention_days: 30
+  aggregation_interval_seconds: 60
+
+# Customer tiers for discount calculation (Scenario 5)
+# This would normally be in a separate business config
+customer_tiers:
+  enterprise:
+    discount_percent: 25
+    features: ["api_access", "priority_support", "custom_reports"]
+  professional:
+    discount_percent: 15
+    features: ["api_access", "email_support"]
+  starter:
+    discount_percent: 5
+    features: ["basic_access"]
